@@ -1,0 +1,46 @@
+# Source database (the 1st column of the link data file)
+source:
+  # Human readable label (intended to be used in a Web UI)
+  label: MBGD (Organism)
+  # Category (should be a class defined in the TogoID ontology; TBD)
+  type: Ortholog
+  # Unique short name (intended to be used as a name space in RDF)
+  # Recommended to use the prefix name defined at prefixcommons.org
+  name: mbgd
+  # URI prefix (intended to be used as a prefix in RDF)
+  prefix: http://purl.jp/bio/11/mbgd#
+
+# Target database (the 2nd column of the link data file)
+target:
+  label: NCBI Taxonomy
+  type: Taxonomy
+  name: orth
+  prefix: http://purl.jp/bio/11/orth#
+
+# Relation of the pair of database identifiers
+link:
+  label: functionally related to
+  name: ro
+  # Ontology URI which defines predicates
+  prefix: http://purl.obolibrary.org/obo/
+  # Selected predicate defined in the above ontology
+  predicate: RO_0002328
+  # File name(s) of link data
+  file: link.tsv
+#  file:
+#    - link.1.tsv
+#    - link.2.tsv
+
+# (Optional) if reverse links should also be generated, define the inverse predicate
+reverse_link:
+  label: enabled by
+  name: ro
+  prefix: http://purl.obolibrary.org/obo/
+  predicate: RO_0002333
+
+# Metadata for updating link data
+update:
+  # How often the source data is updated
+  frequency: Monthly
+  # Update procedure of link data (can be a script name or a command like)
+  method: query.sql
