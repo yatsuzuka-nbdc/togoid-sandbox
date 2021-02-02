@@ -1,30 +1,30 @@
 # Source database (the 1st column of the link data file)
 source:
   # Human readable label (intended to be used in a Web UI)
-  label: MBGD (Organism)
+  label: MBGD (gene)
   # Category (should be a class defined in the TogoID ontology; TBD)
   type: Ortholog
   # Unique short name (intended to be used as a name space in RDF)
   # Recommended to use the prefix name defined at prefixcommons.org
-  name: mbgd
+  name: hsa
   # URI prefix (intended to be used as a prefix in RDF)
-  prefix: http://mbgd.genome.ad.jp/rdf/resource/organism/
+  prefix: <http://mbgd.genome.ad.jp/rdf/resource/gene/hsa:>
 
 # Target database (the 2nd column of the link data file)
 target:
-  label: NCBI Taxonomy
-  type: Taxonomy
-  name: orth
-  prefix: http://identifiers.org/taxonomy/
+  label: UniPlot
+  type: Protein
+  name: uniplot
+  prefix: http://purl.uniprot.org/uniprot/
 
 # Relation of the pair of database identifiers
 link:
-  label: functionally related to
+  label: ribosomal translation of
   name: ro
   # Ontology URI which defines predicates
   prefix: http://purl.obolibrary.org/obo/
   # Selected predicate defined in the above ontology
-  predicate: RO_0002328
+  predicate: RO_0002512
   # File name(s) of link data
   file: link.tsv
 #  file:
