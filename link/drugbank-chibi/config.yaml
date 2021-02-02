@@ -1,12 +1,12 @@
 source:
   label: DrugBank
-  type: Chemical compound / Drug
+  type: Drug
   name: drugbank
   prefix: http://identifiers.org/drugbank
 
 target:
   label: ChEBI
-  type: Chemical compound / Drug
+  type: Chemical compound
   name: chebi
   prefix: http://purl.obolibrary.org/obo/chebi#
 
