@@ -11,17 +11,18 @@ target:
   prefix: http://bio2rdf.org/kegg.compound
 
 link:
-  label: Further information about the subject resource
-  namespace: linkdb
-  prefix: https://www.genome.jp/linkdb/
-  predicate: equivalent
   file: pairs.tsv
 
-reverse_link:
-  label: Further information about the subject resource
-  namespace: linkdb
-  prefix: https://www.genome.jp/linkdb/
-  predicate: equivalent
+  forward:
+    label: Further information about the subject resource
+    namespace: linkdb
+    prefix: https://www.genome.jp/linkdb/
+    predicate: equivalent
+  reverse:
+    label: Further information about the subject resource
+    namespace: linkdb
+    prefix: https://www.genome.jp/linkdb/
+    predicate: equivalent
 
 update:
   frequency: Quarterly
