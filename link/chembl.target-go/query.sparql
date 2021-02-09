@@ -1,0 +1,8 @@
+PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
+SELECT ?ChemblTargetcomponent ?go
+WHERE{
+  ?ChemblTargetcomponent a cco:TargetComponent .
+  ?ChemblTargetcomponent cco:targetCmptXref ?go .
+  FILTER regex (?go, "GO", "i") .
+  }
+LIMIT 100
