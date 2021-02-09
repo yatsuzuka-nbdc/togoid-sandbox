@@ -1,4 +1,4 @@
-# MBGD gene to NCBI protein
+# MBGD gene to PubMed
 
 エンドポイント(http://sparql.nibb.ac.jp/sparql) に以下のクエリを投げた結果をもとに`link.tsv`を作成した。
 ```

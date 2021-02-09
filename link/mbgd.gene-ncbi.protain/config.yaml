@@ -12,10 +12,10 @@ source:
 
 # Target database (the 2nd column of the link data file)
 target:
-  label: NCBI Protein
+  label: PubMed
   type: Protein
-  name: ncbip
-  prefix: http://www.ncbi.nlm.nih.gov/protein/
+  name: 
+  prefix: 
 
 # Relation of the pair of database identifiers
 link:
