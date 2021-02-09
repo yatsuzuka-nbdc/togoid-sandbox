@@ -8,20 +8,16 @@ target:
   label: KEGG Compound
   type: Chemical compound
   name: kegg.compound
-  prefix: http://bio2rdf.org/kegg.compound:
+  prefix: http://bio2rdf.org/kegg.compound\:
 
 link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
   file: pair.tsv
 
-reverse_link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
+  forward:
+    label: KEGG Compound ID
+    name: obo
+    prefix: http://purl.obolibrary.org/obo/
+    predicate: RO_HOM0000071  # in homotopy relationship with
 
 update:
   frequency: Monthly

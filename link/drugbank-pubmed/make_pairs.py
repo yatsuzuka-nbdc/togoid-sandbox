@@ -11,14 +11,9 @@ def id(drug):
         if re.match(r'DB\d+', dbid.text) is not None: return dbid.text 
     assert False
 
-def id2(drug):
-    for exid in drug.findall('./{0}external-identifiers/{0}external-identifier'.format(NAMESPACE)):
-        if 'ChEBI' == exid.find('./{0}resource'.format(NAMESPACE)).text:
-            return exid.find('./{0}identifier'.format(NAMESPACE)).text
-    return None
-
 with open('pair.tsv', 'w', newline='') as file:
     tsv = csv.writer(file, delimiter='\t')
     for drug in drugbank.findall('./'):
-        row = [id(drug), id2(drug)]
-        if row[1] is not None: tsv.writerow(row)
+        id1 = id(drug)
+        for pubmedid in drug.findall('./{0}general-references/{0}articles/{0}article/{0}pubmed-id'.format(NAMESPACE)):
+            tsv.writerow([id1, pubmedid.text])

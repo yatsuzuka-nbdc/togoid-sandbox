@@ -5,19 +5,19 @@ source:
   prefix: http://identifiers.org/drugbank
 
 target:
-  label: ChEMBL
-  type: Drug
-  name: chemble
-  prefix: http://rdf.ebi.ac.uk/terms/chembl#
+  label: PubMed
+  type: 
+  name: pubmed
+  prefix: http://bio2rdf.org/pubmed\:
 
 link:
   file: pair.tsv
 
   forward:
-    label: ChEMBL ID
+    label: PubMed ID
     name: obo
     prefix: http://purl.obolibrary.org/obo/
-    predicate: RO_HOM0000071  # in homotopy relationship with
+    predicate: RO_HOM0002558  # has evidence
 
 update:
   frequency: Monthly

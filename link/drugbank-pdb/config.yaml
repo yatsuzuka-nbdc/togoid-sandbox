@@ -5,19 +5,19 @@ source:
   prefix: http://identifiers.org/drugbank
 
 target:
-  label: ChEMBL
-  type: Drug
-  name: chemble
-  prefix: http://rdf.ebi.ac.uk/terms/chembl#
+  label: Protein Data Bank
+  type: Protein
+  name: pdb
+  prefix: https://rdf.wwpdb.org/pdb/
 
 link:
   file: pair.tsv
 
   forward:
-    label: ChEMBL ID
+    label: PDB ID
     name: obo
     prefix: http://purl.obolibrary.org/obo/
-    predicate: RO_HOM0000071  # in homotopy relationship with
+    predicate: RO_0001018  # contained in
 
 update:
   frequency: Monthly

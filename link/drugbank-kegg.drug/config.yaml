@@ -8,20 +8,16 @@ target:
   label: KEGG Drug
   type: Drug
   name: kegg.drug
-  prefix: http://bio2rdf.org/kegg.drug:
+  prefix: http://bio2rdf.org/kegg.drug\:
 
 link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
   file: pair.tsv
 
-reverse_link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
+  forward:
+    label: KEGG Drug ID
+    name: obo
+    prefix: http://purl.obolibrary.org/obo/
+    predicate: RO_HOM0000071  # in homotopy relationship with
 
 update:
   frequency: Monthly
