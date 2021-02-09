@@ -15,9 +15,9 @@ link:
 
   forward:
     label: UniProtKB ID
-    name: rdfs
-    prefix: http://www.w3.org/2000/01/rdf-schema#
-    predicate: seeAlso
+    name: obo
+    prefix: http://purl.obolibrary.org/obo/
+    predicate: RO_HOM0000071
 
 update:
   frequency: Monthly
