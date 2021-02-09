@@ -14,7 +14,7 @@ link:
   file: pair.tsv
 
   forward:
-    label: Further information about the subject resource
+    label: UniProtKB ID
     name: rdfs
     prefix: http://www.w3.org/2000/01/rdf-schema#
     predicate: seeAlso
