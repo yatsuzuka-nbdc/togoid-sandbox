@@ -5,16 +5,16 @@ source:
   prefix: http://identifiers.org/drugbank
 
 target:
-  label: PubChem Substance
-  type: Chemical Compound
-  name: pubchem
-  prefix: http://rdf.ncbi.nlm.nih.gov/pubchem/substance/
+  label: ChEBI
+  type: Chemical compound
+  name: chebi
+  prefix: http://purl.obolibrary.org/obo/chebi#
 
 link:
   file: pair.tsv
 
   forward:
-    label: PubChem Substance ID
+    label: ChEBI ID
     name: obo
     prefix: http://purl.obolibrary.org/obo/
     predicate: RO_HOM0000071  # in homotopy relationship with

@@ -17,7 +17,7 @@ link:
     label: KEGG Drug ID
     name: obo
     prefix: http://purl.obolibrary.org/obo/
-    predicate: RO_HOM0000071
+    predicate: RO_HOM0000071  # in homotopy relationship with
 
 update:
   frequency: Monthly
