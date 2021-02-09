@@ -15,7 +15,7 @@ link:
 
   forward:
     namespace: rdfs
-    label: targetCmptXref
+    label: Protein2Pathway
     # Sparqlクエリでこの述語を用いて検索しているため、そのまま流用した
     prefix: http://rdf.ebi.ac.uk/terms/chembl#
     predicate: targetCmptXref
