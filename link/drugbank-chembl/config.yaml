@@ -11,17 +11,13 @@ target:
   prefix: http://rdf.ebi.ac.uk/terms/chembl#
 
 link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
   file: pair.tsv
 
-reverse_link:
-  label: Further information about the subject resource
-  name: rdfs
-  prefix: http://www.w3.org/2000/01/rdf-schema#
-  predicate: seeAlso
+  forward:
+    label: ChEMBL ID
+    name: obo
+    prefix: http://purl.obolibrary.org/obo/
+    predicate: RO_HOM0000071
 
 update:
   frequency: Monthly
