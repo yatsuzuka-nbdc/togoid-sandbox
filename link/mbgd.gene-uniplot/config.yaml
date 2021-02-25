@@ -25,4 +25,4 @@ reverse_link:
 
 update:
   frequency: Monthly
-  method: query.sql
+  method: https://is.gd/AUsE2O
