@@ -1,0 +1,8 @@
+PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
+SELECT ?molecule ?chebi
+WHERE{
+  ?molecule a cco:SmallMolecule ;
+            cco:moleculeXref ?chebi .
+  FILTER(CONTAINS(STR(?chebi), "chebi"))
+  }
+LIMIT 100
