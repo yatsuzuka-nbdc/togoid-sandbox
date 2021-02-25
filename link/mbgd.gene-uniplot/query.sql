@@ -8,3 +8,4 @@ SELECT ?gene ?uniprot
           mbgd:taxon taxid:9606 ;
           mbgd:uniprot ?uniprot .
 }
+LIMIT 100
