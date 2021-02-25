@@ -13,6 +13,7 @@ target:
 link:
   file: pair.tsv
 
+
   forward:
     namespace: rdfs
     label: molecule2drug
