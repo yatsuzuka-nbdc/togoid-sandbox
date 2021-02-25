@@ -1,9 +1,9 @@
 PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT ?s ?pubchemref 
+SELECT ?s ?drugbank
 WHERE{
   ?s  a cco:SmallMolecule ;
-      cco:moleculeXref ?pubchemref .
-  FILTER(CONTAINS(STR(?pubchemref), "pubchem"))
+      cco:moleculeXref ?drugbank .
+  FILTER(CONTAINS(STR(?drugbank), "drugbank"))
   }
 LIMIT 100

@@ -5,10 +5,10 @@ source:
   prefix: http://rdf.ebi.ac.uk/resource/chembl/molecule/
 
 target:
-  label: PubChem
+  label: HMDB
   type: Drug
-  name: PubChem
-  prefix: http://pubchem.ncbi.nlm.nih.gov/
+  name: HMDB
+  prefix: http://www.hmdb.ca/metabolites/
 
 link:
   file: pair.tsv
@@ -21,4 +21,4 @@ link:
 
 update:
   frequency: Monthly
-  method: https://is.gd/FcFq82
+  method: https://is.gd/NGXGDZ
