@@ -1,9 +1,9 @@
 link:
   forward:
-    label: is attribute of
-    namespace: ro
-    prefix: http://purl.obolibrary.org/obo/
-    predicate: TXPO_0001872  # is attribute of
+    label: closeMatch
+    namespace: skos
+    prefix: http://www.w3.org/2004/02/skos/core#
+    predicate: closeMatch  # closeMatch
   file: sample.tsv
 update:
   frequency: threeTimesAYear
