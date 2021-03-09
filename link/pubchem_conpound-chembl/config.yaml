@@ -1,14 +1,14 @@
 link:
   forward:
-    label: seeAlso
-    namespace: rdfs
-    prefix: http://www.w3.org/2000/01/rdf-schema#
-    predicate: seeAlso
+    label: closematch
+    namespace: skos
+    prefix: http://www.w3.org/2004/02/skos/core#
+    predicate: closeMatch
   reverse:
-    label: seeAlso
-    namespace: rdfs
-    prefix: http://www.w3.org/2000/01/rdf-schema#
-    predicate: seeAlso
+    label: closematch
+    namespace: skos
+    prefix: http://www.w3.org/2004/02/skos/core#
+    predicate: closeMatch
   file: sample.tsv
 update:
   frequency: Weekly
