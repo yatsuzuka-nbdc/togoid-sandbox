@@ -1,0 +1,10 @@
+link:
+  forward:
+    label: is attribute of
+    namespace: ro
+    prefix: http://purl.obolibrary.org/obo/
+    predicate: TXPO_0001872  # is attribute of
+  file: sample.tsv
+update:
+  frequency: threeTimesAYear
+  method: sparql_csv2tsv.sh query.rq https://integbio.jp/rdf/ebi/sparql
