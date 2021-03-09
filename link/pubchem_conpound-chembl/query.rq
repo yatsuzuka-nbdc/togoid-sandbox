@@ -8,5 +8,4 @@ WHERE {
     a sio:CHEMINF_000412 ;
     sio:has-value ?chembl ].
   }
-LIMIT 100
 }}
