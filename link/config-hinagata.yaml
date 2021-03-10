@@ -1,0 +1,24 @@
+source:
+  label: 
+  type: 
+  name: 
+  prefix: 
+
+target:
+  label: 
+  type: 
+  name: 
+  prefix: 
+
+link:
+  file: 
+
+  forward:
+    label: 
+    namespace: 
+    prefix: 
+    predicate: 
+
+update:
+  frequency: 
+  method: 

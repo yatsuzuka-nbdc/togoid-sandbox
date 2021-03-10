@@ -1,0 +1,10 @@
+PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+SELECT ?s  ?pubmed 
+WHERE{
+  ?s  a cco:SmallMolecule ;
+      cco:hasDocument ?ChemblDocument .
+  ?ChemblDocument a cco:Document .
+  ?ChemblDocument bibo:pmid ?pubmed .
+  }
+LIMIT 100
