@@ -6,5 +6,5 @@ link:
     predicate: closeMatch  # closeMatch
   file: sample.tsv
 update:
-  frequency: threeTimesAYear
+  frequency: Weekly
   method: sparql_csv2tsv.sh query.rq https://integbio.jp/rdf/pubchem/sparql
