@@ -77,40 +77,18 @@ def rec_hier(rows, if_specified):
 
 
 # Output the hierarchical structure according to parse result.
-def output_ds_sub(row, dat_structure, depth, lst_pred, lst_dtype, lst_lang):
+def output_ds(row, dat_structure, depth, preds, dtypes, langs):
     ret, buf = '', ''
     for e in dat_structure:
         if '' != buf:
             ret += buf + '; \n'
             buf = ''
         if type(e) is tuple:
-            buf += '{} [\n'.format('\t' * depth + e[0])
-            output_ds_sub(row, e[1], depth + 1, lst_pred, lst_dtype, lst_lang)
-            buf += '] '
+            buf += '{} [\n{}] '.format('\t' * depth + e[0], output_ds(row, e[1], depth + 1, preds, dtypes, langs))
         else:
             idx = int(e)
             ret += '\t' * depth
-            buf += write_vo(idx, lst_pred[idx], row[idx], dtype(lst_dtype[idx]), lst_lang[idx])
-    if '' != buf: ret += buf
-
-    return ret
-
-
-# Output the hierarchical structure according to parse result.
-def output_ds(row, dat_structure, lst_pred, lst_dtype, lst_lang):
-    ret, depth, buf = '', 1, ''
-    for e in dat_structure:
-        if '' != buf:
-            ret += buf + '; \n'
-            buf = ''
-        if type(e) is tuple:
-            buf += '{} [\n'.format('\t' * depth + e[0])
-            buf += output_ds_sub(row, e[1], depth + 1, lst_pred, lst_dtype, lst_lang)
-            buf += '] '
-        else:
-            idx = int(e)
-            ret += '\t' * depth
-            buf += write_vo(idx, lst_pred[idx], row[idx], dtype(lst_dtype[idx]), lst_lang[idx])
+            buf += write_vo(idx, preds[idx], row[idx], dtype(dtypes[idx]), langs[idx])
     if '' != buf: ret += buf
 
     return ret
@@ -207,12 +185,12 @@ def main():
                     names = row[j].split(MULTIVALUE_SEPARATOR)
                     for e in names:
                         if writebuf is not None: f.write(writebuf + ';\n')
-                        writebuf = write_vo(j, PRED[j], e, dtype(DTYPE[j]), LANG[j])
+                        writebuf = '\t' + write_vo(j, PRED[j], e, dtype(DTYPE[j]), LANG[j])
                 else:
                     if writebuf is not None: f.write(writebuf + ';\n')
-                    writebuf = write_vo(j, PRED[j], row[j], dtype(DTYPE[j]), LANG[j])
+                    writebuf = '\t' + write_vo(j, PRED[j], row[j], dtype(DTYPE[j]), LANG[j])
             if writebuf is not None: f.write(writebuf + ';\n')
-            if dat_structure is not None: writebuf = output_ds(row, dat_structure, PRED, DTYPE, LANG)
+            if dat_structure is not None: writebuf = output_ds(row, dat_structure, 1, PRED, DTYPE, LANG)
             f.write(writebuf + '.\n\n')
 
     f.close()
