@@ -1,5 +1,5 @@
 # genttl.py 使用方法
-入力CSVファイル名は、{csv name}.csvであるとする。Pythonはversion3を想定。
+入力CSVファイル名は、{csv name}.csvであるとする。出力ファイル名は{csv name}.ttlとなる。Pythonはversion3を想定。
 ## ttl変換設定ファイル {csv name}_genttl_config.csvの作成 *(<u>Mandatory</u>)*
 
 ### 入力ファイルの文字コードの指定 *(<u>Mandatory</u>)*
