@@ -1,6 +1,7 @@
 import copy
 import csv
 import json
+import os
 import re
 
 
@@ -9,9 +10,12 @@ FNAME = input()
 fname_prefix = '.'.join(FNAME.split('.')[0:(len(FNAME.split('.')) - 1)])
 FNAME_CONFIG = '{}_genttl_config'.format(fname_prefix)
 # Parse the config json and write prefixes
-with open(FNAME_CONFIG + '.json', 'r', encoding='utf-8', errors='ignore') as fin:
-    WORD2OWL = json.load(fin)
+if os.path.exists(FNAME_CONFIG + '.json'):
+    with open(FNAME_CONFIG + '.json', 'r', encoding='utf-8', errors='ignore') as fin:
+        WORD2OWL = json.load(fin)
+else: WORD2OWL = {}
 assert WORD2OWL is not None
+
 
 def strip_list(list):
     for i in range(len(list)):
@@ -65,7 +69,7 @@ def rec_hier_sub(pred, depth, rows, r, if_specified):
 
 
 def rec_hier(rows, if_specified):
-    ret, r = [], 0
+    ret, r, depth = [], 0, 0
     while r < len(rows):
         assert not '' == rows[r][0]
         if type(rows[r][0]) is not int:
