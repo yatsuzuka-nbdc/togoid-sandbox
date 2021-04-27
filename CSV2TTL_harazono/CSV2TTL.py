@@ -56,24 +56,26 @@ def formatObject(object_, formatting_rule, prefix_dict):
     return returnStr
 
 
+#{"<sampleID_1>", ['''dcterms:title "Human"''', burasagaru moji 2,...,]}
+
+
 def dict2rdf(input_dict, config_dict):
     returnStr = ""
-    for triple_parent_node in config_dict["Triple"]:
-        triple_definitions = config_dict["Triple"][triple_parent_node]
-        subject = input_dict.get(triple_parent_node)
-        if subject == None:
-            subject = triple_parent_node
-            assert subject in config_dict["EmptyNode"], f"{subject} defined in 'Triple' is not registered in 'EmptyNode'"
-        returnStr += f"<{subject}>\n"
-        for each_definition in triple_definitions:
-            predicate = each_definition[0]
-            object_ = input_dict.get(each_definition[1])
-            if object_ is None:#述語が空ノードの場合
-                object_ = f"<{each_definition[1]}>"
-            else:#述語が空ノードでなく、加工が必要な場合の処理
-                object_ = formatObject(object_, config_dict["ObjectRule"][each_definition[2]], config_dict["Prefix"])
-            returnStr += f"{ttlIndent}{predicate} {object_} ;\n"
-        returnStr = returnStr[:-2] + ".\n"
+    for triple_subject_node in config_dict["Triple"]:
+        triple_definitions = config_dict["Triple"][triple_subject_node]
+        if triple_subject_node in config_dict["ExistNode"]:
+            subject = input_dict[triple_subject_node]
+
+            returnStr += f"<{subject}>\n"
+            for each_definition in triple_definitions:
+                predicate = each_definition[0]
+                object_ = input_dict.get(each_definition[1])
+                if object_ is None:#述語が空ノードの場合
+                    object_ = f"<{each_definition[1]}>"
+                else:#述語が空ノードでなく、加工が必要な場合の処理
+                    object_ = formatObject(object_, config_dict["ObjectRule"][each_definition[2]], config_dict["Prefix"])
+                returnStr += f"{ttlIndent}{predicate} {object_} ;\n"
+            returnStr = returnStr[:-2] + ".\n"
     return returnStr
 
 def main():
