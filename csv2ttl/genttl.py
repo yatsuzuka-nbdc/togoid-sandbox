@@ -8,7 +8,7 @@ import re
 print('PATH TO INPUT FILE?')
 FNAME = input()
 fname_prefix = '.'.join(FNAME.split('.')[0:(len(FNAME.split('.')) - 1)])
-FNAME_CONFIG = '{}_genttl_config'.format(fname_prefix)
+FNAME_CONFIG = '{}_csv2ttl_config'.format(fname_prefix)
 # Parse the config json and write prefixes
 if os.path.exists(FNAME_CONFIG + '.json'):
     with open(FNAME_CONFIG + '.json', 'r', encoding='utf-8', errors='ignore') as fin:
