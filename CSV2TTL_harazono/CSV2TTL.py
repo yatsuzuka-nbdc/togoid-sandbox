@@ -8,6 +8,14 @@ import re
 pp = pprint.PrettyPrinter(indent=2)
 ttlIndent = "    "
 
+
+def formatPrefix(prefix_dict):
+    returnStr = ""
+    for each_prefix in prefix_dict:
+        returnStr += f"@prefix {each_prefix}: <{prefix_dict[each_prefix]}> .\n"
+    return returnStr
+
+
 def formatObject(object_, formatting_rule, prefix_dict):
     returnStr = ""
     if formatting_rule is None:
@@ -85,6 +93,7 @@ def main():
     output_stream = sys.stdout
     if args.o:
         output_stream = open(args.o)
+    print(formatPrefix(config_dict["Prefix"]), file = output_stream)
     with open(csv_fn, "r") as f:
         reader = csv.DictReader(f)
         for each_record in reader:

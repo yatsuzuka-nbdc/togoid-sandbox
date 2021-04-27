@@ -73,16 +73,21 @@ RDFトリプルのSPOを指定する。辞書構造のキー（ここではID, K
 # 実行結果
 ```
 $ ./CSV2TTL.py config.yaml sample.csv
+@prefix land: <https://landingpage.com/> .
+@prefix dcterms: <<http://purl.org/dc/terms/>> .
+@prefix rdfs: <<http://www.w3.org/2000/01/rdf-schema#>> .
+
 <sampleID_1>
-    dcterms:title "Human" :
-    dcterms:description "Human is mammalian"@en :
-    dcterms:description "ヒトは哺乳類です"@ja :
-    rdfs:seeAlso <KaraNode1> :
+    dcterms:title "Human" ;
+    dcterms:description "Human is mammalian"@en ;
+    dcterms:description "ヒトは哺乳類です"@ja ;
+    rdfs:seeAlso <KaraNode1> ;
     rdfs:seeAlso <KaraNode2> .
 <KaraNode1>
-    rdfs:seeAlso <https://landingpage.com/ja/human> :
+    rdfs:seeAlso <https://landingpage.com/ja/human> ;
     rdfs:seeAlso <https://landingpage.com/en/human> .
 <KaraNode2>
-    rdfs:seeAlso land:ja/human :
+    rdfs:seeAlso land:ja/human ;
     rdfs:seeAlso land:en/human .
+
 ```
