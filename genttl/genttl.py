@@ -23,21 +23,13 @@ def strip_list(list):
     assert False
 
 
-def obj(s, type):
-    return s
-
-
 def dtype(s):
-    if 'double' == s:
-        return '^^xsd:double'
-    elif 'decimal' == s:
-        return '^^xsd:decimal'
-    elif 'integer' == s:
-        return '^^xsd:integer'
-    else: return ''
+    str2dtype = {'double': '^^xsd:double', 'decimal': '^^xsd:decimal', 'integer': '^^xsd:integer'}
+    if not s in str2dtype: return ''
+    return str2dtype[s]
 
 
-def create_vo(col_idx, pred, content, dtype, lang):
+def write_vo(col_idx, pred, content, dtype, lang):
     if str(col_idx) in WORD2OWL:
         if content in WORD2OWL[str(col_idx)]:
             content = WORD2OWL[str(col_idx)][content]
@@ -95,7 +87,7 @@ def output_ds_sub(row, dat_structure, depth, lst_pred, lst_dtype, lst_lang):
         else:
             idx = int(e)
             ret += '\t' * depth
-            buf += create_vo(idx, lst_pred[idx], obj(row[idx], idx), dtype(lst_dtype[idx]), lst_lang[idx])
+            buf += write_vo(idx, lst_pred[idx], row[idx], dtype(lst_dtype[idx]), lst_lang[idx])
     if '' != buf: ret += buf
 
     return ret
@@ -114,7 +106,7 @@ def output_ds(row, dat_structure, lst_pred, lst_dtype, lst_lang):
         else:
             idx = int(e)
             ret += '\t' * depth
-            buf += create_vo(idx, lst_pred[idx], obj(row[idx], idx), dtype(lst_dtype[idx]), lst_lang[idx])
+            buf += write_vo(idx, lst_pred[idx], row[idx], dtype(lst_dtype[idx]), lst_lang[idx])
     if '' != buf: ret += buf
 
     return ret
@@ -207,7 +199,7 @@ def main():
 
 #                elif 1 == j:
 #                    if writebuf is not None: f.write(writebuf + ';\n')
-#                    writebuf = '\t{0} "{1}"{2}{3} '.format(PRED_TYPE, obj(row[1], 1), dtype(DTYPE[1]), LANG[1])
+#                    writebuf = '\t{0} "{1}"{2}{3} '.format(PRED_TYPE, row[1], dtype(DTYPE[1]), LANG[1])
 
                 # Skip empty column
                 if '' == row[j]: continue
@@ -216,10 +208,10 @@ def main():
                     names = row[j].split(MULTIVALUE_SEPARATOR)
                     for e in names:
                         if writebuf is not None: f.write(writebuf + ';\n')
-                        writebuf = create_vo(j, PRED[j], obj(e, j), dtype(DTYPE[j]), LANG[j])
+                        writebuf = write_vo(j, PRED[j], e, dtype(DTYPE[j]), LANG[j])
                 else:
                     if writebuf is not None: f.write(writebuf + ';\n')
-                    writebuf = create_vo(j, PRED[j], obj(row[j], j), dtype(DTYPE[j]), LANG[j])
+                    writebuf = write_vo(j, PRED[j], row[j], dtype(DTYPE[j]), LANG[j])
             if writebuf is not None: f.write(writebuf + ';\n')
             if dat_structure is not None: writebuf = output_ds(row, dat_structure, PRED, DTYPE, LANG)
             f.write(writebuf + '.\n\n')
