@@ -92,7 +92,7 @@ def main():
     csv_fn = args.csv
     output_stream = sys.stdout
     if args.o:
-        output_stream = open(args.o)
+        output_stream = open(args.o, "w")
     print(formatPrefix(config_dict["Prefix"]), file = output_stream)
     with open(csv_fn, "r") as f:
         reader = csv.DictReader(f)

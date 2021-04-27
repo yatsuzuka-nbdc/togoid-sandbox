@@ -1,3 +1,7 @@
+@prefix land: <https://landingpage.com/> .
+@prefix dcterms: <<http://purl.org/dc/terms/>> .
+@prefix rdfs: <<http://www.w3.org/2000/01/rdf-schema#>> .
+
 <sampleID_1>
     dcterms:title "Human" ;
     dcterms:description "Human is mammalian"@en ;
