@@ -43,6 +43,7 @@ def write_vo(col_idx, pred, content, dtype, lang):
         return "{0} '''{1}'''{2}{3} ".format(pred, content, dtype, lang)
 
 
+# Parse the hierarchical structure in config.csv.
 def rec_hier_sub(pred, depth, rows, r, if_specified):
     ret = []
     while True:
@@ -60,6 +61,7 @@ def rec_hier_sub(pred, depth, rows, r, if_specified):
     return (pred, ret), r, if_specified
 
 
+# Parse the hierarchical structure in config.csv.
 def rec_hier(rows, if_specified):
     ret, r, depth = [], 0, 0
     while r < len(rows):
@@ -74,6 +76,7 @@ def rec_hier(rows, if_specified):
     return ret, if_specified
 
 
+# Output the hierarchical structure according to parse result.
 def output_ds_sub(row, dat_structure, depth, lst_pred, lst_dtype, lst_lang):
     ret, buf = '', ''
     for e in dat_structure:
@@ -93,6 +96,7 @@ def output_ds_sub(row, dat_structure, depth, lst_pred, lst_dtype, lst_lang):
     return ret
 
 
+# Output the hierarchical structure according to parse result.
 def output_ds(row, dat_structure, lst_pred, lst_dtype, lst_lang):
     ret, depth, buf = '', 1, ''
     for e in dat_structure:
@@ -173,7 +177,6 @@ def main():
             else: target_content = ''
     f.write('\n')
     assert ENCODING is not None
-#    PRED_TYPE = 'rdfs:type'
     for i in range(len(if_specified)):
         if '' == PRED[i]: if_specified[i] = True
 
@@ -196,10 +199,6 @@ def main():
                         if_duplicated = True
                         break
                 if if_specified[j] or if_duplicated: continue
-
-#                elif 1 == j:
-#                    if writebuf is not None: f.write(writebuf + ';\n')
-#                    writebuf = '\t{0} "{1}"{2}{3} '.format(PRED_TYPE, row[1], dtype(DTYPE[1]), LANG[1])
 
                 # Skip empty column
                 if '' == row[j]: continue
