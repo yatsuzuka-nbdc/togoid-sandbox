@@ -1,6 +1,6 @@
 @prefix land: <https://landingpage.com/> .
-@prefix dcterms: <<http://purl.org/dc/terms/>> .
-@prefix rdfs: <<http://www.w3.org/2000/01/rdf-schema#>> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <sampleID_1>
     dcterms:title "Human" ;
@@ -9,9 +9,9 @@
     rdfs:seeAlso <KaraNode1> ;
     rdfs:seeAlso <KaraNode2> .
 <KaraNode1>
-    rdfs:seeAlso <https://landingpage.com/ja/human> ;
-    rdfs:seeAlso <https://landingpage.com/en/human> .
+    rdfs:seeAlso <https://landingpage.com/human_ja> ;
+    rdfs:seeAlso <https://landingpage.com/human_en> .
 <KaraNode2>
-    rdfs:seeAlso land:ja/human ;
-    rdfs:seeAlso land:en/human .
+    rdfs:seeAlso land:human_ja ;
+    rdfs:seeAlso land:human_en .
 

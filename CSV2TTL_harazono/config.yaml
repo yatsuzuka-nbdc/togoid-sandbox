@@ -6,8 +6,8 @@ ExistNode:
 
 Prefix:
   land: https://landingpage.com/
-  dcterms: <http://purl.org/dc/terms/>
-  rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  dcterms: http://purl.org/dc/terms/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
 
 Triple:
   ID:

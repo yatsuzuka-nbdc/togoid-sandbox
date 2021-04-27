@@ -17,7 +17,7 @@ optional arguments:
 # sample.csvとconfig.yamlの例
 ```sample.csv
 ID,Name,Desc1,Desc2,LandingPageJa,LandingPageEn
-sampleID_1,Human,Human is mammalian,ヒトは哺乳類です,https://landingpage.com/ja/human,https://landingpage.com/en/human
+sampleID_1,Human,Human is mammalian,ヒトは哺乳類です,https://landingpage.com/human_ja,https://landingpage.com/human_en
 ```
 ```config.yaml
 EmptyNode:
@@ -28,32 +28,32 @@ ExistNode:
 
 Prefix:
   land: https://landingpage.com/
-  pre1: https://prefix1.com/
-  pre2: https://prefix2.com/
+  dcterms: http://purl.org/dc/terms/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
 
 Triple:
   ID:
-  - [pre1:name, Name, ObjectRule1_Literal]
-  - [pre1:desc, Desc1, ObjectRule2_Literal_en]
-  - [pre1:desc, Desc2, ObjectRule3_Literal_ja]
-  - [pre1:seeAlso, KaraNode1, ObjectRule4_URI]
-  - [pre1:seeAlso, KaraNode2, ObjectRule4_URI]
+  - [dcterms:title, Name, ObjectRule1_Literal]
+  - [dcterms:description, Desc1, ObjectRule2_Literal_en]
+  - [dcterms:description, Desc2, ObjectRule3_Literal_ja]
+  - [rdfs:seeAlso, KaraNode1, ObjectRule4_URI]
+  - [rdfs:seeAlso, KaraNode2, ObjectRule4_URI]
   KaraNode1:
-  - [pre2:seeAlso, LandingPageJa, ObjectRule4_URI]
-  - [pre2:seeAlso, LandingPageEn, ObjectRule4_URI]
+  - [rdfs:seeAlso, LandingPageJa, ObjectRule4_URI]
+  - [rdfs:seeAlso, LandingPageEn, ObjectRule4_URI]
   KaraNode2:
-  - [pre2:seeAlso, LandingPageJa, ObjectRule5_URI_UsePrefix]
-  - [pre2:seeAlso, LandingPageEn, ObjectRule5_URI_UsePrefix]
+  - [rdfs:seeAlso, LandingPageJa, ObjectRule5_URI_UsePrefix]
+  - [rdfs:seeAlso, LandingPageEn, ObjectRule5_URI_UsePrefix]
 
 ObjectRule:
   ObjectRule1_Literal:
     Type: Literal
   ObjectRule2_Literal_en:
     Type: Literal
-    Langage: en
+    Language: en
   ObjectRule3_Literal_ja:
     Type: Literal
-    Langage: ja
+    Language: ja
   ObjectRule4_URI:
     Type: URI
   ObjectRule5_URI_UsePrefix:
@@ -74,8 +74,8 @@ RDFトリプルのSPOを指定する。辞書構造のキー（ここではID, K
 ```
 $ ./CSV2TTL.py config.yaml sample.csv
 @prefix land: <https://landingpage.com/> .
-@prefix dcterms: <<http://purl.org/dc/terms/>> .
-@prefix rdfs: <<http://www.w3.org/2000/01/rdf-schema#>> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <sampleID_1>
     dcterms:title "Human" ;
@@ -84,10 +84,10 @@ $ ./CSV2TTL.py config.yaml sample.csv
     rdfs:seeAlso <KaraNode1> ;
     rdfs:seeAlso <KaraNode2> .
 <KaraNode1>
-    rdfs:seeAlso <https://landingpage.com/ja/human> ;
-    rdfs:seeAlso <https://landingpage.com/en/human> .
+    rdfs:seeAlso <https://landingpage.com/human_ja> ;
+    rdfs:seeAlso <https://landingpage.com/human_en> .
 <KaraNode2>
-    rdfs:seeAlso land:ja/human ;
-    rdfs:seeAlso land:en/human .
+    rdfs:seeAlso land:human_ja ;
+    rdfs:seeAlso land:human_en .
 
 ```
