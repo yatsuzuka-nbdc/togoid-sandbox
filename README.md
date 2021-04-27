@@ -1,4 +1,6 @@
-# togoid-sandbox
+# CSV2TTL（新ツール）
+
+# 旧ツール
 ## genttl
 ### メリット
 - csvはyamlより一般的で直感的に書きやすい。
