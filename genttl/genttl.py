@@ -30,6 +30,7 @@ def dtype(s):
 
 
 def write_vo(col_idx, pred, content, dtype, lang):
+    assert pred != ''
     if str(col_idx) in WORD2OWL:
         if content in WORD2OWL[str(col_idx)]:
             content = WORD2OWL[str(col_idx)][content]
@@ -44,36 +45,20 @@ def write_vo(col_idx, pred, content, dtype, lang):
 
 
 # Parse the hierarchical structure in config.csv.
-def rec_hier_sub(pred, depth, rows, r, if_specified):
+def rec_hier(rows, if_specified, pred=None, depth=0, r=0):
+    assert depth < len(rows[r])
     ret = []
-    while True:
-        assert not '' == rows[r][depth]
-        if not re.compile(r'^\d+$').match(rows[r][depth]):
-            pair, r, if_specified = rec_hier_sub(rows[r][depth], depth + 1, rows, r, if_specified)
-            ret.append(pair)
-            if len(rows) <= r: break
-        else:
-            if_specified[int(rows[r][depth])] = True
-            ret.append(int(rows[r][depth]))
-            r += 1
-            if len(rows) <= r: break
-            if depth >= len(rows[r]): break
-    return (pred, ret), r, if_specified
-
-
-# Parse the hierarchical structure in config.csv.
-def rec_hier(rows, if_specified):
-    ret, r, depth = [], 0, 0
     while r < len(rows):
-        assert not '' == rows[r][0]
-        if type(rows[r][0]) is not int:
-            pair, r, if_specified = rec_hier_sub(rows[r][0], 1, rows, r, if_specified)
+        assert '' != rows[r][depth]
+        if re.match(r'\d+', rows[r][depth]) is None:
+            pair, r, if_specified = rec_hier(rows, if_specified, pred=rows[r][depth], depth=depth+1, r=r)
             ret.append(pair)
         else:
             if_specified[int(rows[r][depth])] = True
             ret.append(int(rows[r][depth]))
             r += 1
-    return ret, if_specified
+    if depth > 0: return (pred, ret), r, if_specified
+    else: return ret, if_specified
 
 
 # Output the hierarchical structure according to parse result.
@@ -147,8 +132,7 @@ def main():
             elif 'HIERARCHY' == target_content:
                 if '<<' == row[0].split(' ')[0]:
                     target_content = row[0].split(' ')[1]
-                    assert if_specified is not None
-                    dat_structure, if_specified = rec_hier(rows_hier, if_specified)
+                    if len(rows_hier) > 0: dat_structure, if_specified = rec_hier(rows_hier, if_specified)
                     continue
                 rows_hier.append(strip_list(row))
             elif 'NAMESPACE' == target_content: f.write('@prefix {0}: <{1}> .\n'.format(row[0], row[1]))
@@ -189,9 +173,10 @@ def main():
                 else:
                     if writebuf is not None: f.write(writebuf + ';\n')
                     writebuf = '\t' + write_vo(j, PRED[j], row[j], dtype(DTYPE[j]), LANG[j])
-            if writebuf is not None: f.write(writebuf + ';\n')
-            if dat_structure is not None: writebuf = output_ds(row, dat_structure, 1, PRED, DTYPE, LANG)
-            f.write(writebuf + '.\n\n')
+            if dat_structure is None: f.write(writebuf + '.\n\n')
+            else:
+                if writebuf is not None: f.write(writebuf + ';\n')
+                f.write(output_ds(row, dat_structure, 1, PRED, DTYPE, LANG) + '.\n\n')
 
     f.close()
 
