@@ -40,7 +40,7 @@ def create_vo(col_idx, pred, content, dtype, lang):
             return "{0} {1} ".format(pred, content)
     if re.match(r'https{,1}://[^ ]*', content) is not None:
         return "{0} <{1}> ".format(pred, content)
-    if re.match(r'.*\'.*', content) is None:
+    if re.match(r'.*[\'\n\r].*', content) is None:
         return "{0} '{1}'{2}{3} ".format(pred, content, dtype, lang)
     else:
         content = content.replace("'", "\\'")
