@@ -1,0 +1,24 @@
+source:
+  namespace: chembl.molecule
+  type: Drug #スプレッドシート”IDの詳細”ではDrugに分類されているが、Molecureというサブカテゴリを用意するのが適切かもしれない
+  label: ChEMBL molecure
+  prefix: http://rdf.ebi.ac.uk/resource/chembl/molecule/
+
+target:
+  label: PubChem
+  type: Drug
+  name: PubChem
+  prefix: http://pubchem.ncbi.nlm.nih.gov/
+
+link:
+  file: pair.tsv
+
+  forward:
+    namespace: rdfs
+    label: molecule2drug
+    prefix: http://rdf.ebi.ac.uk/terms/chembl#
+    predicate: moleculeXref
+
+update:
+  frequency: Monthly
+  method: https://is.gd/FcFq82

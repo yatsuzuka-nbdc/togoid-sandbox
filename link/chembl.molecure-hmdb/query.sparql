@@ -1,0 +1,8 @@
+PREFIX cco: <http://rdf.ebi.ac.uk/terms/chembl#>
+SELECT ?molecule ?o
+WHERE{
+  ?molecule a cco:SmallMolecule ;
+            cco:moleculeXref ?o .
+   FILTER(CONTAINS(STR(?o), "hmdb"))
+  }
+LIMIT 100

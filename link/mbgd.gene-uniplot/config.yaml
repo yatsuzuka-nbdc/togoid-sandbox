@@ -1,0 +1,28 @@
+source:
+  label: MBGD (gene)
+  type: Ortholog
+  name: hsa
+  prefix: <http://mbgd.genome.ad.jp/rdf/resource/gene/hsa:>
+
+target:
+  label: UniPlot
+  type: Protein
+  name: uniplot
+  prefix: http://purl.uniprot.org/uniprot/
+
+link:
+  label: ribosomal translation of
+  name: ro
+  prefix: http://purl.obolibrary.org/obo/
+  predicate: RO_0002512
+  file: link.tsv
+
+reverse_link:
+  label: enabled by
+  name: ro
+  prefix: http://purl.obolibrary.org/obo/
+  predicate: RO_0002333
+
+update:
+  frequency: Monthly
+  method: https://is.gd/AUsE2O
